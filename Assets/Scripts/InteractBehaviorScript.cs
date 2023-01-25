@@ -118,7 +118,7 @@ public class InteractBehaviorScript : MonoBehaviour
     {
        
         
-        rb.AddForce(transform.up * speed * Time.deltaTime, ForceMode2D.Impulse);
+        rb.AddForce(ballStateScript.cannon.transform.up * speed * Time.deltaTime, ForceMode2D.Impulse);
         ballStateScript.isInCannon = false;
     }
 
