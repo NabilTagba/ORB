@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Hazard
   - Sticky
+  - Ball
+  - Cannon
+  - Maze
   layers:
   - Default
   - TransparentFX
