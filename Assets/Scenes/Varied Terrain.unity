@@ -221,6 +221,7 @@ GameObject:
   - component: {fileID: 453996001}
   - component: {fileID: 453996005}
   - component: {fileID: 453996006}
+  - component: {fileID: 453996007}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Player
@@ -357,6 +358,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canStick: 1
+--- !u!114 &453996007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453996000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a41da6c3d5e8ed438e01de0e39c577b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isInStateNull: 1
+  isInCannon: 0
+  isNextToCannon: 0
+  isOnStickyWall: 0
+  isOnPlatform: 0
+  cannon: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1247,7 +1266,7 @@ GameObject:
   - component: {fileID: 1831774241}
   m_Layer: 0
   m_Name: Stage Body
-  m_TagString: Untagged
+  m_TagString: Maze
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2819,6 +2838,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 50
+  maxSpeed: 70
+  minSpeed: 20
 --- !u!66 &1831774239
 CompositeCollider2D:
   m_ObjectHideFlags: 0
