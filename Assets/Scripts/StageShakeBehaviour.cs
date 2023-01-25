@@ -1,3 +1,8 @@
+/******************************************************************************
+// File Name     : StageShakeBehaviour.cs
+// Creation Info : Adam Garwacki [1/24/2023]
+// Description   : Allows the stage to be shook by clicking on the screen.
+******************************************************************************/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,104 +16,143 @@ public class StageShakeBehaviour : MonoBehaviour
     [SerializeField] private bool cooldown;
     [SerializeField] private bool canShake;
 
-    // Start is called before the first frame update
-    void Start()
+    /// <summary>
+    /// Stores the initial position of the stage and allows shaking.
+    /// </summary>
+    private void Start()
     {
         stageInitialPos = transform.position;
         canShake = true;
     }
 
-    // Update is called once per frame
-    void Update()
+    /// <summary>
+    /// Shakes the stage, depending on where the player clicks during play.
+    /// </summary>
+    private void Update()
     {
+        // Shakes the stage
         if (Input.GetMouseButtonDown(0) && canShake)
         {
             CheckMouseQuadrant();
         }
 
+        // Moves the stage back towards its initial position
         if (cooldown == true && transform.position != stageInitialPos)
         {
             transform.position = Vector3.Lerp(transform.position, stageInitialPos, 0.5f);
         }
+        // If the stage is in its original position, player can shake again
         else if (cooldown == true)
         {
             cooldown = false;
             canShake = true;
         }
+        // If the player has no cooldown, they can shake
         else if (canShake == false && cooldown == false)
         {
             canShake = true;
         }
     }
 
+    /// <summary>
+    /// Checks where the cursor is when the player clicks, and shakes according
+    /// to the result.
+    /// </summary>
     private void CheckMouseQuadrant()
     {
-        print("Click!");
         canShake = false;
         Vector3 clickPosition = Input.mousePosition;
 
         if (clickPosition.x < (Screen.width / 4))
         {
-            StartCoroutine(ShakeLeft());
+            ShakeLeft();
         }
         else if (clickPosition.x > (Screen.width * 0.75))
         {
-            StartCoroutine(ShakeRight());
+            ShakeRight();
         }
         else if (clickPosition.y < (Screen.height / 3))
         {
-            StartCoroutine(ShakeDown());
+            ShakeDown();
         }
         else if (clickPosition.y > Screen.height * 0.6666)
         {
-            StartCoroutine(ShakeUp());
+            ShakeUp();
         }
     }
 
-    private IEnumerator ShakeLeft()
+    /// <summary>
+    /// Shakes the screen to the left.
+    /// </summary>
+    private void ShakeLeft()
     {
-        print("Left of screen clicked!");
-        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
-        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY;
-        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+        FreezeVertically();
         GetComponent<Rigidbody2D>().AddForce(Vector2.left * shakeForce, ForceMode2D.Impulse);
-        yield return new WaitForSeconds(resetSpeed);
-        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
-        cooldown = true;
+        StartCoroutine(ShakeCooldown());
     }
-    private IEnumerator ShakeRight()
+
+    /// <summary>
+    /// Shakes the screen to the right.
+    /// </summary>
+    private void ShakeRight()
     {
-        print("Right of screen clicked!");
+        FreezeVertically();
+        GetComponent<Rigidbody2D>().AddForce(Vector2.right * shakeForce, ForceMode2D.Impulse);
+        StartCoroutine(ShakeCooldown());
+    }
+
+    /// <summary>
+    /// Shakes the screen downward.
+    /// </summary>
+    private void ShakeDown()
+    {
+        FreezeHorizontally();
+        GetComponent<Rigidbody2D>().AddForce(Vector2.down * shakeForce, ForceMode2D.Impulse);
+        StartCoroutine(ShakeCooldown());
+    }
+
+    /// <summary>
+    /// Shakes the screen upward.
+    /// </summary>
+    private void ShakeUp()
+    {
+        FreezeHorizontally();
+        GetComponent<Rigidbody2D>().AddForce(Vector2.up * shakeForce, ForceMode2D.Impulse);
+        StartCoroutine(ShakeCooldown());
+    }
+
+    /// <summary>
+    /// Freezes the stage aside from its vertical axis.
+    /// </summary>
+    private void FreezeHorizontally()
+    {
+        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX;
+        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+    }
+
+    /// <summary>
+    /// Freezes the stage aside from its horizontal axis.
+    /// </summary>
+    private void FreezeVertically()
+    {
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY;
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
-        GetComponent<Rigidbody2D>().AddForce(Vector2.right * shakeForce, ForceMode2D.Impulse);
-        yield return new WaitForSeconds(resetSpeed);
-        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
-        cooldown = true;
     }
 
-    private IEnumerator ShakeDown()
+    /// <summary>
+    /// Applies cooldown to the shaking action, and unsticks ball if it was
+    /// stuck prior to the shake.
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator ShakeCooldown()
     {
-        print("Bottom of screen clicked!");
-        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
-        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX;
-        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
-        GetComponent<Rigidbody2D>().AddForce(Vector2.down * shakeForce, ForceMode2D.Impulse);
+        GameObject.FindGameObjectWithTag("Player").GetComponent<StickyBehaviour>().CanStick = false;
         yield return new WaitForSeconds(resetSpeed);
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
         cooldown = true;
-    }
-
-    private IEnumerator ShakeUp()
-    {
-        print("Top of screen clicked!");
-        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
-        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX;
-        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
-        GetComponent<Rigidbody2D>().AddForce(Vector2.up * shakeForce, ForceMode2D.Impulse);
-        yield return new WaitForSeconds(resetSpeed);
-        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
-        cooldown = true;
+        yield return new WaitForSeconds(0.2f);
+        GameObject.FindGameObjectWithTag("Player").GetComponent<StickyBehaviour>().CanStick = true;
     }
 }
