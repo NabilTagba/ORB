@@ -29,7 +29,13 @@ public class BallState : MonoBehaviour
     //objects in state with
     public GameObject cannon;
 
-
+    private void Update()
+    {
+        if (cannon == null)
+        {
+            isInCannon = false;
+        }
+    }
     /// <summary>
     /// called on initial collision
     /// </summary>

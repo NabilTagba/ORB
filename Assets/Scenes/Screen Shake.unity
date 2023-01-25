@@ -459,6 +459,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+--- !u!1 &1144379146 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7899411467852204305, guid: a1093e5f045109649bb7faaf7b06efe1, type: 3}
+  m_PrefabInstance: {fileID: 7899411467935753457}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1144379153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1144379146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a41da6c3d5e8ed438e01de0e39c577b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isInStateNull: 1
+  isInCannon: 0
+  isNextToCannon: 0
+  isOnStickyWall: 0
+  isOnPlatform: 0
+  cannon: {fileID: 0}
 --- !u!1 &1310501006
 GameObject:
   m_ObjectHideFlags: 0
@@ -2687,8 +2710,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 50
-  maxSpeed: 0
-  minSpeed: 0
+  maxSpeed: 70
+  minSpeed: 20
 --- !u!66 &1831774239
 CompositeCollider2D:
   m_ObjectHideFlags: 0
