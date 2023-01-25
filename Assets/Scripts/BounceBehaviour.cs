@@ -9,7 +9,7 @@ public class BounceBehaviour : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("Bounce"))
+        if (collision.collider.CompareTag("Bouncy"))
         {
             print("collision!");
             gameObject.GetComponent<Rigidbody2D>().AddForce
