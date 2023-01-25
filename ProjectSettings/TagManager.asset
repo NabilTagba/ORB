@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Hazard
+  - Sticky
   layers:
   - Default
   - TransparentFX
