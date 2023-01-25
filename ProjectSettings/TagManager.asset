@@ -5,7 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Hazard
-  - Bounce
+  - Sticky
   layers:
   - Default
   - TransparentFX
