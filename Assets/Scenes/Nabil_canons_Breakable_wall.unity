@@ -402,6 +402,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   barrel: {fileID: 200713750}
   launchPoint: {fileID: 2942462}
+  shouldRotateWithMaze: 1
 --- !u!1 &1037400567 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7899411467852204305, guid: 576d089aa6a622c43bcf6993a8a96542, type: 3}

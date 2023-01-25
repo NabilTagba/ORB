@@ -7,6 +7,9 @@ TagManager:
   - Hazard
   - Sticky
   - Door
+  - Undefined
+  - Cannon
+  - Maze
   layers:
   - Default
   - TransparentFX
