@@ -6,7 +6,10 @@ TagManager:
   tags:
   - Hazard
   - Sticky
-  - Bouncy
+  - Door
+  - Undefined
+  - Cannon
+  - Maze
   layers:
   - Default
   - TransparentFX

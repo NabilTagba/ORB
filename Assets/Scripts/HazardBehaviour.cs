@@ -12,4 +12,6 @@ public class HazardBehaviour : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
+
+    
 }

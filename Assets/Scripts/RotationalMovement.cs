@@ -1,20 +1,72 @@
+/*
+ * File Name: Rotational Movement
+ * Created By: Nabil Tagba
+ * Creation Date: 1/20/23
+ * Description: provides rotational movement methods
+ * and functionality
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class RotationalMovement : MonoBehaviour
 {
-    // Start is called before the first frame update
+    //var init
     [SerializeField] private float speed;
-    
-    // Update is called once per frame
-    void Update()
+    [SerializeField] private float maxSpeed;
+    [SerializeField] private float minSpeed;
+
+    private BallState ballStateScript;
+    /// <summary>
+    /// happens once when the game starts
+    /// </summary>
+    private void Start()
     {
-        Rotate(Input.GetAxis("Horizontal"));
+        ballStateScript = GameObject.FindGameObjectWithTag("Player").GetComponent<BallState>();
     }
 
+
+    /// <summary>
+    /// updates every frame
+    /// </summary>
+    void Update()
+    {
+        //binding and executing input
+        if (ballStateScript.isInCannon == false)
+        {
+
+            //rotation depending on input
+            Rotate(Input.GetAxis("Horizontal"));
+            //increasing speed depending on input
+            IncreaseRotationalSpeed(Input.mouseScrollDelta.y);
+        }
+        
+
+
+        
+
+    }
+    /// <summary>
+    /// rotates an object depending on axis value
+    /// </summary>
+    /// <param name="axisValue"></param>
     private void Rotate(float axisValue)
     {
         transform.Rotate(.0f,.0f, -axisValue * speed * Time.deltaTime);
+    }
+    /// <summary>
+    /// increases the speed of rotation depending on the direction the player scrolls
+    /// </summary>
+    /// <param name="scrollInput"></param>
+    private void IncreaseRotationalSpeed(float scrollInput) 
+    {
+        //increasing and decreasing speed
+        speed += scrollInput;
+
+        // clamping speed
+        speed = Mathf.Clamp(speed, minSpeed, maxSpeed);
+
+
     }
 }
