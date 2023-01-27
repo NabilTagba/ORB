@@ -11,10 +11,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BallState : MonoBehaviour
 {
-
+    [SerializeField] private int nextRoom;
 
     // var init
     // state null is when the boll is not in a special state
@@ -121,6 +122,14 @@ public class BallState : MonoBehaviour
             default:
 
                 break;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("NextRoom"))
+        {;
+            SceneManager.LoadScene(nextRoom); 
         }
     }
 }
