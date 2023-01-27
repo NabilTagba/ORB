@@ -25,15 +25,38 @@ public class BallState : MonoBehaviour
     public bool isNextToCannon = false;
     public bool isOnStickyWall = false;
     public bool isOnPlatform = false;
+    public bool wasLaunched = false;
+    public bool wasJustLaunched = false;
+    
 
     //objects in state with
     public GameObject cannon;
 
+    private float justLaunchedDelay = 0;
+    
     private void Update()
     {
         if (cannon == null)
         {
             isInCannon = false;
+        }
+
+        if (wasLaunched)
+        {
+            wasJustLaunched = true;
+           
+        }
+
+        if (wasJustLaunched == true)
+        { 
+           
+            justLaunchedDelay += Time.deltaTime;
+            print(justLaunchedDelay);
+            if (justLaunchedDelay >= 1)
+            {
+                wasJustLaunched = false;
+                justLaunchedDelay = 0;
+            }
         }
     }
     /// <summary>
