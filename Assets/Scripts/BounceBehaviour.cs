@@ -11,7 +11,6 @@ public class BounceBehaviour : MonoBehaviour
     {
         if (collision.collider.CompareTag("Bouncy"))
         {
-            print("collision!");
             gameObject.GetComponent<Rigidbody2D>().AddForce
                 (Vector2.up * bounceForce * Time.deltaTime);
         }
