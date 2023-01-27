@@ -7,7 +7,7 @@ public class CannonAndChilderen : MonoBehaviour
     //cannon children
     public GameObject barrel;
     public GameObject launchPoint;
-
+    
 
     //
     private GameObject Maze;
@@ -15,6 +15,8 @@ public class CannonAndChilderen : MonoBehaviour
 
     //
     [SerializeField] private bool shouldRotateWithMaze = true;
+
+   
     private void Start()
     {
         Maze = GameObject.FindGameObjectWithTag("Maze");
@@ -22,9 +24,14 @@ public class CannonAndChilderen : MonoBehaviour
     }
     private void Update()
     {
+
+
         if (ballStateScript.isInCannon == false && shouldRotateWithMaze == true)
         {
-            transform.rotation = Maze.transform.rotation;
+
+                transform.rotation = Maze.transform.rotation;
+          
+            
         }
             
     }
