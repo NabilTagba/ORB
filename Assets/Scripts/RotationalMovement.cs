@@ -9,6 +9,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class RotationalMovement : MonoBehaviour
 {
@@ -16,8 +17,11 @@ public class RotationalMovement : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float maxSpeed;
     [SerializeField] private float minSpeed;
+    [SerializeField] private float rotSpeed;
 
     private BallState ballStateScript;
+    public TMP_Text RotateText;
+
     /// <summary>
     /// happens once when the game starts
     /// </summary>
@@ -40,6 +44,7 @@ public class RotationalMovement : MonoBehaviour
             Rotate(Input.GetAxis("Horizontal"));
             //increasing speed depending on input
             IncreaseRotationalSpeed(Input.mouseScrollDelta.y);
+            RotateText.text = "Rotation Speed: " + speed.ToString();
         }
         
 
@@ -62,7 +67,7 @@ public class RotationalMovement : MonoBehaviour
     private void IncreaseRotationalSpeed(float scrollInput) 
     {
         //increasing and decreasing speed
-        speed += scrollInput;
+        speed += scrollInput * rotSpeed;
 
         // clamping speed
         speed = Mathf.Clamp(speed, minSpeed, maxSpeed);
