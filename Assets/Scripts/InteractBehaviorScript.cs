@@ -12,10 +12,10 @@ public class InteractBehaviorScript : MonoBehaviour
 {
 
 
-    [SerializeField] private float speed;
+    
 
     private BallState ballStateScript;
-    private Rigidbody2D rb;
+    
 
     CannonAndChilderen cannonScript;
 
@@ -26,7 +26,7 @@ public class InteractBehaviorScript : MonoBehaviour
     void Start()
     {
         ballStateScript = GetComponent<BallState>();
-        rb = GetComponent<Rigidbody2D>();
+        
     }
 
     /// <summary>
@@ -116,10 +116,9 @@ public class InteractBehaviorScript : MonoBehaviour
     }
     private void ShootOutOfCannon()
     {
-       
-        
-        rb.AddForce(transform.up * speed * Time.deltaTime, ForceMode2D.Impulse);
+        ballStateScript.wasLaunched = true;
         ballStateScript.isInCannon = false;
+
     }
 
 }
