@@ -15,7 +15,8 @@ using UnityEngine.SceneManagement;
 
 public class BallState : MonoBehaviour
 {
-    [SerializeField] private int nextRoom;
+    // Value is the index of the scene you're going to. Set in inspector
+    public int nextRoom;
 
     // var init
     // state null is when the boll is not in a special state
@@ -125,10 +126,16 @@ public class BallState : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// When you hit tiles with this tag, you will transition to the next room
+    /// </summary>
+    /// <param name="collision"></param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        // when you collide with these tiles...
         if (collision.gameObject.CompareTag("NextRoom"))
-        {;
+        {
+            // go to the next scene (as specified by the int in the inspector)
             SceneManager.LoadScene(nextRoom); 
         }
     }
