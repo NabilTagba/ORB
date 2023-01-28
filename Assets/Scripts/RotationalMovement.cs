@@ -9,11 +9,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class RotationalMovement : MonoBehaviour
 {
-    //var init
     [SerializeField] private float speed;
     [SerializeField] private float maxSpeed;
     [SerializeField] private float minSpeed;
@@ -21,12 +21,14 @@ public class RotationalMovement : MonoBehaviour
 
     private BallState ballStateScript;
     public TMP_Text RotateText;
+    private BallState bs;
 
     /// <summary>
     /// happens once when the game starts
     /// </summary>
     private void Start()
     {
+        bs = GameObject.Find("Ball").GetComponent<BallState>();
         ballStateScript = GameObject.FindGameObjectWithTag("Player").GetComponent<BallState>();
     }
 
@@ -36,21 +38,7 @@ public class RotationalMovement : MonoBehaviour
     /// </summary>
     void Update()
     {
-        //binding and executing input
-        if (ballStateScript.isInCannon == false)
-        {
-
-            //rotation depending on input
-            Rotate(Input.GetAxis("Horizontal"));
-            //increasing speed depending on input
-            IncreaseRotationalSpeed(Input.mouseScrollDelta.y);
-            RotateText.text = "Rotation Speed: " + speed.ToString();
-        }
-        
-
-
-        
-
+        ScrollForRotationSpeed();
     }
     /// <summary>
     /// rotates an object depending on axis value
@@ -71,7 +59,23 @@ public class RotationalMovement : MonoBehaviour
 
         // clamping speed
         speed = Mathf.Clamp(speed, minSpeed, maxSpeed);
+    }
 
+    private void ScrollForRotationSpeed()
+    {
+        //binding and executing input
+        if (ballStateScript.isInCannon == false)
+        {
+            //rotation depending on input
+            Rotate(Input.GetAxis("Horizontal"));
+            // in every scene but the main menu...
+            if (bs.nextRoom != 1)
+            {
+                //increasing speed depending on input
+                IncreaseRotationalSpeed(Input.mouseScrollDelta.y);
+                RotateText.text = "Rotation Speed: " + speed.ToString();
+            }
 
+        }
     }
 }
