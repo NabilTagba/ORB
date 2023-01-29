@@ -30,12 +30,6 @@ public class StageShakeBehaviour : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        // Shakes the stage
-        if (Input.GetMouseButtonDown(0) && canShake)
-        {
-            CheckMouseQuadrant();
-        }
-
         // Moves the stage back towards its initial position
         if (cooldown == true && transform.position != stageInitialPos)
         {
@@ -52,33 +46,28 @@ public class StageShakeBehaviour : MonoBehaviour
         {
             canShake = true;
         }
-    }
 
-    /// <summary>
-    /// Checks where the cursor is when the player clicks, and shakes according
-    /// to the result.
-    /// </summary>
-    private void CheckMouseQuadrant()
-    {
-        canShake = false;
-        Vector3 clickPosition = Input.mousePosition;
-
-        if (clickPosition.x < (Screen.width / 4))
+        if (Input.GetKeyDown(KeyCode.UpArrow) && canShake)
         {
-            ShakeLeft();
-        }
-        else if (clickPosition.x > (Screen.width * 0.75))
-        {
-            ShakeRight();
-        }
-        else if (clickPosition.y < (Screen.height / 3))
-        {
-            ShakeDown();
-        }
-        else if (clickPosition.y > Screen.height * 0.6666)
-        {
+            canShake = false;
             ShakeUp();
         }
+        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            canShake = false;
+            ShakeRight();
+        }
+        else if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            canShake = false;
+            ShakeDown();
+        }
+        else if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            canShake = false;
+            ShakeLeft();
+        }
+
     }
 
     /// <summary>
