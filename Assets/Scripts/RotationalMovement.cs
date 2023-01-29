@@ -28,7 +28,7 @@ public class RotationalMovement : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        bs = GameObject.Find("Ball").GetComponent<BallState>();
+        bs = GameObject.FindGameObjectWithTag("Player").GetComponent<BallState>();
         ballStateScript = GameObject.FindGameObjectWithTag("Player").GetComponent<BallState>();
     }
 
