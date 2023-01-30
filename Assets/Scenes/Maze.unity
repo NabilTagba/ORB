@@ -3198,7 +3198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 30
-  maxSpeed: 70
+  maxSpeed: 50
   minSpeed: 20
   rotSpeed: 10
   RotateText: {fileID: 721827110}
@@ -3215,7 +3215,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextRoom: 2
-  gc: {fileID: 0}
   isInStateNull: 1
   isInCannon: 0
   isNextToCannon: 0

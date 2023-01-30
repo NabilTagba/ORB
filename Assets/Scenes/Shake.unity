@@ -3539,7 +3539,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 30
-  maxSpeed: 70
+  maxSpeed: 50
   minSpeed: 20
   rotSpeed: 10
   RotateText: {fileID: 134244542}
