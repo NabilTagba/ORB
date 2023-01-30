@@ -17,7 +17,6 @@ public class BallState : MonoBehaviour
 {
     // Value is the index of the scene you're going to. Set in inspector
     public int nextRoom;
-    public GameObject gc;
 
     // var init
     // state null is when the boll is not in a special state
@@ -138,7 +137,6 @@ public class BallState : MonoBehaviour
         {
             // go to the next scene (as specified by the int in the inspector)
             SceneManager.LoadScene(nextRoom);
-            DontDestroyOnLoad(gc);
         }
     }
 }
