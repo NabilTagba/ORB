@@ -1251,8 +1251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a41da6c3d5e8ed438e01de0e39c577b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextRoom: 0
-  gc: {fileID: 0}
+  nextRoom: 4
   isInStateNull: 1
   isInCannon: 0
   isNextToCannon: 0
