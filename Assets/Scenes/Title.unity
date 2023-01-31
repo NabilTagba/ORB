@@ -300,6 +300,7 @@ MonoBehaviour:
   maxSpeed: 70
   minSpeed: 20
   rotSpeed: 10
+  rotationMemory: {fileID: 11400000, guid: b201be7997d53b04ba3db5fbb528bb8b, type: 2}
   RotateText: {fileID: 0}
 --- !u!66 &618581988
 CompositeCollider2D:
@@ -1963,6 +1964,7 @@ MonoBehaviour:
   maxSpeed: 70
   minSpeed: 20
   rotSpeed: 10
+  rotationMemory: {fileID: 11400000, guid: b201be7997d53b04ba3db5fbb528bb8b, type: 2}
   RotateText: {fileID: 0}
 --- !u!1 &821775216
 GameObject:
@@ -4097,4 +4099,5 @@ MonoBehaviour:
   maxSpeed: 70
   minSpeed: 20
   rotSpeed: 10
+  rotationMemory: {fileID: 11400000, guid: b201be7997d53b04ba3db5fbb528bb8b, type: 2}
   RotateText: {fileID: 0}

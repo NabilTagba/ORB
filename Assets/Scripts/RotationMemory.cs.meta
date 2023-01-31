@@ -1,11 +1,9 @@
 fileFormatVersion: 2
-guid: c917fb6a24eb6864f997b48262152a34
+guid: 3910b9e8db9eebf469aa1585afa59c94
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - rotationMemory: {fileID: 11400000, guid: b201be7997d53b04ba3db5fbb528bb8b, type: 2}
-  - RotateText: {instanceID: 0}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
