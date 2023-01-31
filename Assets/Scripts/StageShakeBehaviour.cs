@@ -9,20 +9,20 @@ using UnityEngine;
 
 public class StageShakeBehaviour : MonoBehaviour
 {
-    private Vector3 stageInitialPos;
-
     [SerializeField] private float shakeForce;
     [SerializeField] private float resetSpeed;
     [SerializeField] private bool cooldown;
     [SerializeField] private bool canShake;
+
+    private GameObject sceneCamera;
 
     /// <summary>
     /// Stores the initial position of the stage and allows shaking.
     /// </summary>
     private void Start()
     {
-        stageInitialPos = transform.position;
         canShake = true;
+        sceneCamera = GameObject.FindGameObjectWithTag("MainCamera");
     }
 
     /// <summary>
@@ -30,19 +30,21 @@ public class StageShakeBehaviour : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        // Moves the stage back towards its initial position
-        if (cooldown == true && transform.position != stageInitialPos)
+        if (cooldown)
         {
-            transform.position = Vector3.Lerp(transform.position, stageInitialPos, 0.5f);
+            sceneCamera.transform.position = Vector3.MoveTowards(sceneCamera.transform.position, 
+                new Vector3(transform.position.x, transform.position.y, sceneCamera.transform.position.z), 0.5f);
         }
-        // If the stage is in its original position, player can shake again
-        else if (cooldown == true)
+        
+        if (sceneCamera.transform.position == new Vector3(transform.position.x, transform.position.y, sceneCamera.transform.position.z) && cooldown)
         {
             cooldown = false;
             canShake = true;
+            GameObject.FindGameObjectWithTag("Player").GetComponent<StickyBehaviour>().CanStick = true;
         }
+
         // If the player has no cooldown, they can shake
-        else if (canShake == false && cooldown == false)
+        if (canShake == false && cooldown == false)
         {
             canShake = true;
         }
@@ -52,17 +54,17 @@ public class StageShakeBehaviour : MonoBehaviour
             canShake = false;
             ShakeUp();
         }
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        else if (Input.GetKeyDown(KeyCode.RightArrow) && canShake)
         {
             canShake = false;
             ShakeRight();
         }
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
+        else if (Input.GetKeyDown(KeyCode.DownArrow) && canShake)
         {
             canShake = false;
             ShakeDown();
         }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
+        else if (Input.GetKeyDown(KeyCode.LeftArrow) && canShake)
         {
             canShake = false;
             ShakeLeft();
@@ -141,7 +143,5 @@ public class StageShakeBehaviour : MonoBehaviour
         yield return new WaitForSeconds(resetSpeed);
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
         cooldown = true;
-        yield return new WaitForSeconds(0.2f);
-        GameObject.FindGameObjectWithTag("Player").GetComponent<StickyBehaviour>().CanStick = true;
     }
 }

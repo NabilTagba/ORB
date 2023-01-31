@@ -19,6 +19,9 @@ public class RotationalMovement : MonoBehaviour
     [SerializeField] private float minSpeed;
     [SerializeField] private float rotSpeed;
 
+    [SerializeField] private RotationMemory rotationMemory;
+    private bool canChangeSpeed = true;
+
     private BallState ballStateScript;
     public TMP_Text RotateText;
     private BallState bs;
@@ -30,16 +33,63 @@ public class RotationalMovement : MonoBehaviour
     {
         bs = GameObject.FindGameObjectWithTag("Player").GetComponent<BallState>();
         ballStateScript = GameObject.FindGameObjectWithTag("Player").GetComponent<BallState>();
+        speed = rotationMemory.RotationSpeed;
+
+        if (bs.nextRoom != 1)
+        {
+            RotateText.text = "Rotation Speed: " + speed.ToString();
+        }
+        else
+        {
+            rotationMemory.RotationSpeed = 30;
+        }
     }
 
 
     /// <summary>
     /// updates every frame
     /// </summary>
-    void Update()
+    private void Update()
     {
-        ScrollForRotationSpeed();
+        Rotate(Input.GetAxis("Horizontal"));
+
+        if (Input.GetKey(KeyCode.W) && bs.nextRoom != 1 && canChangeSpeed)
+        {
+            StartCoroutine(IncreaseSpeed());
+        }
+        else if (Input.GetKey(KeyCode.S) && bs.nextRoom != 1 && canChangeSpeed)
+        {
+            StartCoroutine(DecreaseSpeed());
+        }
+
     }
+
+    private IEnumerator IncreaseSpeed()
+    {
+        // Disallows further change until cooldown is over
+        canChangeSpeed = false;
+        // Increases rotation speed
+        speed = Mathf.Clamp(speed += rotSpeed, minSpeed, maxSpeed);
+        RotateText.text = "Rotation Speed: " + speed.ToString();
+        // Updates memory
+        rotationMemory.RotationSpeed = speed;
+        yield return new WaitForSeconds(0.1f);
+        canChangeSpeed = true;
+    }
+
+    private IEnumerator DecreaseSpeed()
+    {
+        // Disallows further change until cooldown is over
+        canChangeSpeed = false;
+        // Decreases rotation speed
+        speed = Mathf.Clamp(speed -= rotSpeed, minSpeed, maxSpeed);
+        RotateText.text = "Rotation Speed: " + speed.ToString();
+        // Updates memory
+        rotationMemory.RotationSpeed = speed;
+        yield return new WaitForSeconds(0.1f);
+        canChangeSpeed = true;
+    }
+
     /// <summary>
     /// rotates an object depending on axis value
     /// </summary>
@@ -48,20 +98,21 @@ public class RotationalMovement : MonoBehaviour
     {
         transform.Rotate(.0f,.0f, -axisValue * speed * Time.deltaTime);
     }
+
     /// <summary>
     /// increases the speed of rotation depending on the direction the player scrolls
     /// </summary>
     /// <param name="scrollInput"></param>
-    private void IncreaseRotationalSpeed(float scrollInput) 
+    /* private void IncreaseRotationalSpeed(float scrollInput) 
     {
         //increasing and decreasing speed
         speed += scrollInput * rotSpeed;
 
         // clamping speed
         speed = Mathf.Clamp(speed, minSpeed, maxSpeed);
-    }
+    } */
 
-    private void ScrollForRotationSpeed()
+    /* private void ScrollForRotationSpeed()
     {
         //binding and executing input
         if (ballStateScript.isInCannon == false)
@@ -77,5 +128,7 @@ public class RotationalMovement : MonoBehaviour
             }
 
         }
-    }
+    } */
+
+
 }
