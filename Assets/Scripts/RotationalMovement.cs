@@ -37,7 +37,7 @@ public class RotationalMovement : MonoBehaviour
 
         if (bs.nextRoom != 1)
         {
-            RotateText.text = "Rotation Speed: " + speed.ToString();
+            RotateText.text = ((speed/10) -1).ToString();
         }
         else
         {
@@ -70,7 +70,7 @@ public class RotationalMovement : MonoBehaviour
         canChangeSpeed = false;
         // Increases rotation speed
         speed = Mathf.Clamp(speed += rotSpeed, minSpeed, maxSpeed);
-        RotateText.text = "Rotation Speed: " + speed.ToString();
+        RotateText.text = ((speed/10) - 1).ToString();
         // Updates memory
         rotationMemory.RotationSpeed = speed;
         yield return new WaitForSeconds(0.1f);
@@ -83,7 +83,7 @@ public class RotationalMovement : MonoBehaviour
         canChangeSpeed = false;
         // Decreases rotation speed
         speed = Mathf.Clamp(speed -= rotSpeed, minSpeed, maxSpeed);
-        RotateText.text = "Rotation Speed: " + speed.ToString();
+        RotateText.text = ((speed/10) -1).ToString();
         // Updates memory
         rotationMemory.RotationSpeed = speed;
         yield return new WaitForSeconds(0.1f);
