@@ -1473,7 +1473,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb471a274361e44ea6c095c3b7d75d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shakeForce: 700
+  shakeForce: 320
   resetSpeed: 0.05
   cooldown: 0
   canShake: 1
@@ -2449,7 +2449,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 7
+  m_Constraints: 3
 --- !u!114 &584708525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2462,10 +2462,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c917fb6a24eb6864f997b48262152a34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 30
-  maxSpeed: 50
-  minSpeed: 20
-  rotSpeed: 10
+  speed: 1000
+  maxSpeed: 10300
+  minSpeed: 1000
+  rotSpeed: 1000
   rotationMemory: {fileID: 11400000, guid: b201be7997d53b04ba3db5fbb528bb8b, type: 2}
   RotateText: {fileID: 1187132875}
 --- !u!19719996 &584708526
@@ -6483,7 +6483,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 10
+  m_Mass: 0.0001
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 5

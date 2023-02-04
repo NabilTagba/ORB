@@ -119,7 +119,7 @@ public class StageShakeBehaviour : MonoBehaviour
     {
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX;
-        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+        
     }
 
     /// <summary>
@@ -129,7 +129,7 @@ public class StageShakeBehaviour : MonoBehaviour
     {
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY;
-        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+        
     }
 
     /// <summary>
@@ -141,7 +141,8 @@ public class StageShakeBehaviour : MonoBehaviour
     {
         GameObject.FindGameObjectWithTag("Player").GetComponent<StickyBehaviour>().CanStick = false;
         yield return new WaitForSeconds(resetSpeed);
-        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX;
+        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY;
         cooldown = true;
     }
 }

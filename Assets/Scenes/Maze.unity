@@ -1413,6 +1413,7 @@ GameObject:
   - component: {fileID: 1831774236}
   - component: {fileID: 1831774235}
   - component: {fileID: 1831774238}
+  - component: {fileID: 1831774239}
   m_Layer: 0
   m_Name: TM_Demo
   m_TagString: Maze
@@ -3337,12 +3338,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c917fb6a24eb6864f997b48262152a34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 30
-  maxSpeed: 50
-  minSpeed: 20
-  rotSpeed: 10
+  speed: 1000
+  maxSpeed: 10300
+  minSpeed: 1000
+  rotSpeed: 1000
   rotationMemory: {fileID: 11400000, guid: b201be7997d53b04ba3db5fbb528bb8b, type: 2}
   RotateText: {fileID: 1986997740}
+--- !u!50 &1831774239
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1831774233}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 3
 --- !u!114 &1875808443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3511,7 +3533,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 10
+  m_Mass: 0.0001
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 5

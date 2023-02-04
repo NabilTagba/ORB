@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3910b9e8db9eebf469aa1585afa59c94, type: 3}
   m_Name: RotationMemory
   m_EditorClassIdentifier: 
-  rotationSpeed: 30
+  rotationSpeed: 5000

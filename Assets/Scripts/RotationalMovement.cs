@@ -26,6 +26,9 @@ public class RotationalMovement : MonoBehaviour
     public TMP_Text RotateText;
     private BallState bs;
 
+
+    private Rigidbody2D rb;
+
     /// <summary>
     /// happens once when the game starts
     /// </summary>
@@ -34,14 +37,15 @@ public class RotationalMovement : MonoBehaviour
         bs = GameObject.FindGameObjectWithTag("Player").GetComponent<BallState>();
         ballStateScript = GameObject.FindGameObjectWithTag("Player").GetComponent<BallState>();
         speed = rotationMemory.RotationSpeed;
+        rb = GetComponent<Rigidbody2D>();
 
         if (bs.nextRoom != 1)
         {
-            RotateText.text = ((speed/10) -1).ToString();
+            RotateText.text = ((speed/1000) -1).ToString();
         }
         else
         {
-            rotationMemory.RotationSpeed = 30;
+            rotationMemory.RotationSpeed = 5000;
         }
     }
 
@@ -70,7 +74,7 @@ public class RotationalMovement : MonoBehaviour
         canChangeSpeed = false;
         // Increases rotation speed
         speed = Mathf.Clamp(speed += rotSpeed, minSpeed, maxSpeed);
-        RotateText.text = ((speed/10) - 1).ToString();
+        RotateText.text = ((speed/1000) - 1).ToString();
         // Updates memory
         rotationMemory.RotationSpeed = speed;
         yield return new WaitForSeconds(0.1f);
@@ -83,7 +87,7 @@ public class RotationalMovement : MonoBehaviour
         canChangeSpeed = false;
         // Decreases rotation speed
         speed = Mathf.Clamp(speed -= rotSpeed, minSpeed, maxSpeed);
-        RotateText.text = ((speed/10) -1).ToString();
+        RotateText.text = ((speed/1000) -1).ToString();
         // Updates memory
         rotationMemory.RotationSpeed = speed;
         yield return new WaitForSeconds(0.1f);
@@ -96,7 +100,10 @@ public class RotationalMovement : MonoBehaviour
     /// <param name="axisValue"></param>
     private void Rotate(float axisValue)
     {
-        transform.Rotate(.0f,.0f, -axisValue * speed * Time.deltaTime);
+
+            rb.angularVelocity = -axisValue * speed * Time.deltaTime;
+            print("should be rotating");
+      
     }
 
     /// <summary>
