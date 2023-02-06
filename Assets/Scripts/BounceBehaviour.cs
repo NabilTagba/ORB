@@ -20,7 +20,7 @@ public class BounceBehaviour : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            print("space");
+            //print("space");
             ball.GetComponent<Rigidbody2D>().AddForce(Vector2.up * bounceForce * Time.deltaTime);
         }
     }

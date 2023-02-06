@@ -12,7 +12,7 @@ public class ButtonStuff : MonoBehaviour
             if (doorToOpen != null)
             {
                 doorToOpen.SetActive(false);
-                Debug.Log("Colliding With Player Button");
+                //Debug.Log("Colliding With Player Button");
             }
             
             
