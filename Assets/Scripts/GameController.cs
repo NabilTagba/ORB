@@ -50,7 +50,7 @@ public class GameController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            print("Quit");
+            //print("Quit");
             Application.Quit();
         }
 

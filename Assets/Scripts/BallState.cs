@@ -53,7 +53,7 @@ public class BallState : MonoBehaviour
         { 
            
             justLaunchedDelay += Time.deltaTime;
-            print(justLaunchedDelay);
+            //print(justLaunchedDelay);
             if (justLaunchedDelay >= 1)
             {
                 wasJustLaunched = false;
@@ -73,7 +73,7 @@ public class BallState : MonoBehaviour
                 isInStateNull = true;
                 break;
             case "Cannon":
-                print("Hello World");
+                //print("Hello World");
                 isNextToCannon = true;
                 cannon = collision.gameObject;
                 break;

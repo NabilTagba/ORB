@@ -1431,10 +1431,10 @@ GameObject:
   - component: {fileID: 584708528}
   - component: {fileID: 584708527}
   - component: {fileID: 584708526}
-  - component: {fileID: 584708525}
   - component: {fileID: 584708524}
   - component: {fileID: 584708523}
   - component: {fileID: 584708522}
+  - component: {fileID: 584708529}
   m_Layer: 0
   m_Name: Stage Body
   m_TagString: Maze
@@ -2450,24 +2450,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 3
---- !u!114 &584708525
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 584708520}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c917fb6a24eb6864f997b48262152a34, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 1000
-  maxSpeed: 10300
-  minSpeed: 1000
-  rotSpeed: 1000
-  rotationMemory: {fileID: 11400000, guid: b201be7997d53b04ba3db5fbb528bb8b, type: 2}
-  RotateText: {fileID: 1187132875}
 --- !u!19719996 &584708526
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -6421,6 +6403,24 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &584708529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 584708520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c917fb6a24eb6864f997b48262152a34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2000
+  maxSpeed: 4000
+  minSpeed: 1000
+  rotSpeed: 500
+  rotationMemory: {fileID: 11400000, guid: b201be7997d53b04ba3db5fbb528bb8b, type: 2}
+  RotateText: {fileID: 1187132875}
 --- !u!1 &814530784
 GameObject:
   m_ObjectHideFlags: 0

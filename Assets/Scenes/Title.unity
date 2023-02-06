@@ -296,10 +296,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c917fb6a24eb6864f997b48262152a34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5000
-  maxSpeed: 10300
+  speed: 2000
+  maxSpeed: 4000
   minSpeed: 1000
-  rotSpeed: 1000
+  rotSpeed: 500
   rotationMemory: {fileID: 11400000, guid: b201be7997d53b04ba3db5fbb528bb8b, type: 2}
   RotateText: {fileID: 0}
 --- !u!66 &618581988
@@ -1966,10 +1966,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c917fb6a24eb6864f997b48262152a34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 30
-  maxSpeed: 70
-  minSpeed: 20
-  rotSpeed: 10
+  speed: 2000
+  maxSpeed: 4000
+  minSpeed: 1000
+  rotSpeed: 500
   rotationMemory: {fileID: 11400000, guid: b201be7997d53b04ba3db5fbb528bb8b, type: 2}
   RotateText: {fileID: 0}
 --- !u!50 &742726114

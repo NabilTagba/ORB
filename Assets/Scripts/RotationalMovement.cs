@@ -41,20 +41,20 @@ public class RotationalMovement : MonoBehaviour
 
         if (bs.nextRoom != 1)
         {
-            RotateText.text = ((speed/1000) -1).ToString();
+            RotateText.text = ((speed/500) -1).ToString();
         }
         else
         {
-            rotationMemory.RotationSpeed = 5000;
+            rotationMemory.RotationSpeed = 2000;
         }
     }
-
 
     /// <summary>
     /// updates every frame
     /// </summary>
-    private void Update()
+    private void FixedUpdate()
     {
+        //transform.position = Vector2.zero;
         Rotate(Input.GetAxis("Horizontal"));
 
         if (Input.GetKey(KeyCode.W) && bs.nextRoom != 1 && canChangeSpeed)
@@ -74,7 +74,7 @@ public class RotationalMovement : MonoBehaviour
         canChangeSpeed = false;
         // Increases rotation speed
         speed = Mathf.Clamp(speed += rotSpeed, minSpeed, maxSpeed);
-        RotateText.text = ((speed/1000) - 1).ToString();
+        RotateText.text = ((speed/500) -1).ToString();
         // Updates memory
         rotationMemory.RotationSpeed = speed;
         yield return new WaitForSeconds(0.1f);
@@ -87,7 +87,7 @@ public class RotationalMovement : MonoBehaviour
         canChangeSpeed = false;
         // Decreases rotation speed
         speed = Mathf.Clamp(speed -= rotSpeed, minSpeed, maxSpeed);
-        RotateText.text = ((speed/1000) -1).ToString();
+        RotateText.text = ((speed/500) -1).ToString();
         // Updates memory
         rotationMemory.RotationSpeed = speed;
         yield return new WaitForSeconds(0.1f);
@@ -102,7 +102,7 @@ public class RotationalMovement : MonoBehaviour
     {
 
             rb.angularVelocity = -axisValue * speed * Time.deltaTime;
-            print("should be rotating");
+            //print("should be rotating");
       
     }
 
